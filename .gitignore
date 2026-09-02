@@ -1,3 +1,5 @@
 build/
-AppIcon.iconset/
+*.xcarchive
+DerivedData/
+xcuserdata/
 .DS_Store
