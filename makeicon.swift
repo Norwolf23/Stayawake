@@ -1,11 +1,14 @@
 // Renders the app icon (white cup.and.saucer.fill on a blue rounded square)
-// into AppIcon.iconset/. Run via build.sh.
+// into Assets.xcassets/AppIcon.appiconset/. Run: swift makeicon.swift
 import AppKit
 
 func render(_ size: Int, _ path: String) {
     let s = CGFloat(size)
-    let img = NSImage(size: NSSize(width: s, height: s))
-    img.lockFocus()
+    let rep = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: size, pixelsHigh: size, bitsPerSample: 8,
+                               samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: .deviceRGB,
+                               bytesPerRow: 0, bitsPerPixel: 0)!
+    NSGraphicsContext.saveGraphicsState()
+    NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: rep)
     let inset = s * 0.09
     let rect = NSRect(x: inset, y: inset, width: s - inset * 2, height: s - inset * 2)
     let bg = NSBezierPath(roundedRect: rect, xRadius: s * 0.2, yRadius: s * 0.2)
@@ -25,12 +28,11 @@ func render(_ size: Int, _ path: String) {
         let dw = w * scale, dh = h * scale
         tinted.draw(in: NSRect(x: (s - dw) / 2, y: (s - dh) / 2, width: dw, height: dh))
     }
-    img.unlockFocus()
-    guard let tiff = img.tiffRepresentation, let rep = NSBitmapImageRep(data: tiff),
-          let png = rep.representation(using: .png, properties: [:]) else { fatalError() }
-    try! png.write(to: URL(fileURLWithPath: path))
+    NSGraphicsContext.restoreGraphicsState()
+    try! rep.representation(using: .png, properties: [:])!.write(to: URL(fileURLWithPath: path))
 }
 
-for sz in [16, 32, 64, 128, 256, 512, 1024] {
-    render(sz, "AppIcon.iconset/icon_\(sz).png")
+for pt in [16, 32, 128, 256, 512] {
+    render(pt, "Assets.xcassets/AppIcon.appiconset/icon_\(pt)x\(pt).png")
+    render(pt * 2, "Assets.xcassets/AppIcon.appiconset/icon_\(pt)x\(pt)@2x.png")
 }
