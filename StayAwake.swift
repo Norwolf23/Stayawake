@@ -1,4 +1,5 @@
 import SwiftUI
+import IOKit.pwr_mgt
 
 @main
 struct StayAwakeApp: App {
@@ -19,33 +20,33 @@ struct StayAwakeApp: App {
 final class Keeper: ObservableObject {
     static let shared = Keeper()
     @Published var active = false
-    private var caffeinate: Process?
+    private var assertions: [IOPMAssertionID] = []
 
     func toggle() { active ? stop() : start() }
 
     private func start() {
-        let p = Process()
-        p.executableURL = URL(fileURLWithPath: "/usr/bin/caffeinate")
-        // -d display, -i idle, -m disk, -s system (AC), -u declare user activity
-        p.arguments = ["-dimsu"]
-        do {
-            try p.run()
-            caffeinate = p
-            active = true
-        } catch {
-            NSLog("StayAwake: failed to launch caffeinate: \(error)")
+        // Display + idle system sleep, and system sleep on AC (lid closed) — like caffeinate -dis
+        for type in [kIOPMAssertionTypePreventUserIdleDisplaySleep, kIOPMAssertionTypePreventSystemSleep] {
+            var id = IOPMAssertionID(0)
+            if IOPMAssertionCreateWithName(type as CFString, IOPMAssertionLevel(kIOPMAssertionLevelOn),
+                                           "StayAwake active" as CFString, &id) == kIOReturnSuccess {
+                assertions.append(id)
+            } else {
+                NSLog("StayAwake: failed to create assertion \(type)")
+            }
         }
+        active = !assertions.isEmpty
     }
 
     func stop() {
-        caffeinate?.terminate()
-        caffeinate = nil
+        assertions.forEach { IOPMAssertionRelease($0) }
+        assertions = []
         active = false
     }
 }
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
-    // Kill the caffeinate child on quit so sleep prevention never outlives the app
+    // Release assertions on quit so sleep prevention never outlives the app
     func applicationWillTerminate(_ notification: Notification) {
         Keeper.shared.stop()
     }
