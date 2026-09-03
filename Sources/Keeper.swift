@@ -13,7 +13,7 @@ final class Keeper: ObservableObject {
     @Published private(set) var active = false
     @Published private(set) var status = ""
     @Published var duration: TimeInterval? = nil   // chosen in the UI before starting
-    private var since = Date()
+    private(set) var since = Date()
     private var until: Date?
     private var tick: Timer?
     #if os(macOS)
@@ -21,6 +21,13 @@ final class Keeper: ObservableObject {
     #endif
 
     func toggle() { active ? stop() : start(for: duration) }
+
+    /// "48m", or nil when running until turned off
+    var remaining: String? {
+        guard let until else { return nil }
+        let f = DateComponentsFormatter(); f.allowedUnits = [.hour, .minute]; f.unitsStyle = .abbreviated
+        return f.string(from: max(60, until.timeIntervalSinceNow))
+    }
 
     /// duration nil = until turned off
     func start(for duration: TimeInterval?) {
