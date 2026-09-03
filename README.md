@@ -1,4 +1,4 @@
-# StayAwake ☕️
+# Stayawake ☕️
 
 A tiny macOS menu bar app that keeps your Mac awake. One click on, one click off. No settings, no windows, no dependencies — ~60 lines of Swift using IOKit power assertions.
 
@@ -12,9 +12,9 @@ A tiny macOS menu bar app that keeps your Mac awake. One click on, one click off
 Requires macOS 13+, Xcode and [xcodegen](https://github.com/yonaskolb/XcodeGen) (`brew install xcodegen`).
 
 ```sh
-git clone https://github.com/Norwolf23/StayAwake.git
-cd StayAwake
-xcodegen generate && xcodebuild -scheme StayAwake -configuration Release build
+git clone https://github.com/Norwolf23/Stayawake.git
+cd Stayawake
+xcodegen generate && xcodebuild -scheme Stayawake -configuration Release build
 ```
 
 The app is sandboxed and signed for the Mac App Store; archive in Xcode (Product → Archive) and export with `ExportOptions.plist` to submit.
