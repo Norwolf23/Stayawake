@@ -8,7 +8,7 @@ targets:
     type: application
     platform: macOS
     sources:
-      - StayAwake.swift
+      - Sources
       - Assets.xcassets
     entitlements:
       path: StayAwake.entitlements
@@ -33,4 +33,34 @@ targets:
         ENABLE_APP_SANDBOX: YES
         GENERATE_INFOPLIST_FILE: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SWIFT_VERSION: "5.0"
+  StayAwake-iOS:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - Sources
+      - Assets-iOS.xcassets
+    info:
+      path: Info-iOS.plist
+      properties:
+        CFBundleDisplayName: StayAwake
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        ITSAppUsesNonExemptEncryption: false
+        NSHumanReadableCopyright: "© 2026 Nickson Studio"
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+    settings:
+      base:
+        PRODUCT_NAME: StayAwake
+        PRODUCT_BUNDLE_IDENTIFIER: studio.nickson.stayawake
+        DEVELOPMENT_TEAM: 6272CRNH9G
+        CODE_SIGN_STYLE: Automatic
+        MARKETING_VERSION: "1.1"
+        CURRENT_PROJECT_VERSION: 1
+        GENERATE_INFOPLIST_FILE: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        TARGETED_DEVICE_FAMILY: "1,2"
         SWIFT_VERSION: "5.0"
