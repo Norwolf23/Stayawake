@@ -2,16 +2,16 @@
 // into Assets.xcassets/AppIcon.appiconset/. Run: swift makeicon.swift
 import AppKit
 
-func render(_ size: Int, _ path: String) {
+func render(_ size: Int, _ path: String, fullBleed: Bool = false) {
     let s = CGFloat(size)
     let rep = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: size, pixelsHigh: size, bitsPerSample: 8,
                                samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: .deviceRGB,
                                bytesPerRow: 0, bitsPerPixel: 0)!
     NSGraphicsContext.saveGraphicsState()
     NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: rep)
-    let inset = s * 0.09
+    let inset = fullBleed ? 0 : s * 0.09   // iOS masks its own corners; give it the whole square
     let rect = NSRect(x: inset, y: inset, width: s - inset * 2, height: s - inset * 2)
-    let tile = NSBezierPath(roundedRect: rect, xRadius: s * 0.2, yRadius: s * 0.2)
+    let tile = NSBezierPath(roundedRect: rect, xRadius: fullBleed ? 0 : s * 0.2, yRadius: fullBleed ? 0 : s * 0.2)
 
     // Tile: same blue, now lit from the top
     NSGradient(colors: [NSColor(calibratedRed: 0.42, green: 0.62, blue: 0.86, alpha: 1),
@@ -72,3 +72,4 @@ for pt in [16, 32, 128, 256, 512] {
     render(pt, "Assets.xcassets/AppIcon.appiconset/icon_\(pt)x\(pt).png")
     render(pt * 2, "Assets.xcassets/AppIcon.appiconset/icon_\(pt)x\(pt)@2x.png")
 }
+render(1024, "Assets-iOS.xcassets/AppIcon.appiconset/icon_1024.png", fullBleed: true)
