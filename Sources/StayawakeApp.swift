@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct StayAwakeApp: App {
+struct StayawakeApp: App {
     #if os(macOS)
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     #endif
@@ -9,12 +9,12 @@ struct StayAwakeApp: App {
 
     var body: some Scene {
         #if os(macOS)
-        Window("StayAwake", id: "main") {
-            ControlView().frame(width: 380, height: 440)
+        Window("Stayawake", id: "main") {
+            ControlView().frame(width: 400, height: 560)
         }
         .windowResizability(.contentSize)
 
-        MenuBarExtra("StayAwake", systemImage: keeper.active ? "cup.and.saucer.fill" : "cup.and.saucer") {
+        MenuBarExtra("Stayawake", systemImage: keeper.active ? "cup.and.saucer.fill" : "cup.and.saucer") {
             if keeper.active {
                 Text(keeper.status)
                 Button("Allow sleep") { keeper.stop() }
@@ -27,7 +27,7 @@ struct StayAwakeApp: App {
                 }
             }
             Divider()
-            Button("Quit StayAwake") { NSApp.terminate(nil) }
+            Button("Quit Stayawake") { NSApp.terminate(nil) }
         }
         #else
         WindowGroup { ControlView() }

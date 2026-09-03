@@ -1,21 +1,21 @@
-name: StayAwake
+name: Stayawake
 options:
   bundleIdPrefix: studio.nickson
   deploymentTarget:
     macOS: "13.0"
 targets:
-  StayAwake:
+  Stayawake:
     type: application
     platform: macOS
     sources:
       - Sources
       - Assets.xcassets
     entitlements:
-      path: StayAwake.entitlements
+      path: Stayawake.entitlements
     info:
       path: Info.plist
       properties:
-        CFBundleDisplayName: StayAwake
+        CFBundleDisplayName: Stayawake
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         LSApplicationCategoryType: public.app-category.utilities
@@ -34,7 +34,7 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         SWIFT_VERSION: "5.0"
-  StayAwake-iOS:
+  Stayawake-iOS:
     type: application
     platform: iOS
     deploymentTarget: "17.0"
@@ -44,7 +44,7 @@ targets:
     info:
       path: Info-iOS.plist
       properties:
-        CFBundleDisplayName: StayAwake
+        CFBundleDisplayName: Stayawake
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         ITSAppUsesNonExemptEncryption: false
@@ -54,7 +54,7 @@ targets:
         UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
     settings:
       base:
-        PRODUCT_NAME: StayAwake
+        PRODUCT_NAME: Stayawake
         PRODUCT_BUNDLE_IDENTIFIER: studio.nickson.stayawake
         DEVELOPMENT_TEAM: 6272CRNH9G
         CODE_SIGN_STYLE: Automatic

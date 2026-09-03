@@ -50,10 +50,10 @@ final class Keeper: ObservableObject {
         for type in [kIOPMAssertionTypePreventUserIdleDisplaySleep, kIOPMAssertionTypePreventSystemSleep] {
             var id = IOPMAssertionID(0)
             if IOPMAssertionCreateWithName(type as CFString, IOPMAssertionLevel(kIOPMAssertionLevelOn),
-                                           "StayAwake active" as CFString, &id) == kIOReturnSuccess {
+                                           "Stayawake active" as CFString, &id) == kIOReturnSuccess {
                 assertions.append(id)
             } else {
-                NSLog("StayAwake: failed to create assertion \(type)")
+                NSLog("Stayawake: failed to create assertion \(type)")
             }
         }
         active = !assertions.isEmpty
