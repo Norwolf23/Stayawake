@@ -10,8 +10,9 @@ struct StayawakeApp: App {
     var body: some Scene {
         #if os(macOS)
         Window("Stayawake", id: "main") {
-            ControlView().frame(width: 400, height: 560)
+            ControlView().frame(width: 340, height: 620)
         }
+        .windowStyle(.hiddenTitleBar)
         .windowResizability(.contentSize)
 
         MenuBarExtra("Stayawake", systemImage: keeper.active ? "cup.and.saucer.fill" : "cup.and.saucer") {

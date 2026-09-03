@@ -40,7 +40,11 @@ struct ControlView: View {
                             .shadow(color: .black.opacity(keeper.active ? 0.35 : 0), radius: 18, y: 12)
                     }
                 }
+                #if os(macOS)
+                .frame(height: 250)
+                #else
                 .frame(height: 280)
+                #endif
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
@@ -68,11 +72,13 @@ struct ControlView: View {
                 .font(.footnote)
                 .foregroundStyle(.white.opacity(0.5))
                 .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
             #else
             Text("Closing the lid still puts the Mac to sleep, unless an external display is connected.")
                 .font(.footnote)
                 .foregroundStyle(.white.opacity(0.5))
                 .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
             #endif
             Spacer(minLength: 0)
         }
