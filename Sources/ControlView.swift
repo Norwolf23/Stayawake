@@ -1,31 +1,56 @@
 import SwiftUI
 
-/// The one screen: big cup button, status, duration picker. Shared by Mac window and iPhone.
+/// The one screen: a big steaming cup on a night-blue gradient, status, duration picker.
+/// Shared by the Mac window and iPhone.
 struct ControlView: View {
     @ObservedObject var keeper = Keeper.shared
-    private let blue = Color(red: 0.28, green: 0.48, blue: 0.72)
+
+    private var background: LinearGradient {
+        LinearGradient(
+            colors: keeper.active
+                ? [Color(red: 0.16, green: 0.30, blue: 0.52), Color(red: 0.09, green: 0.15, blue: 0.30)]
+                : [Color(red: 0.08, green: 0.12, blue: 0.22), Color(red: 0.05, green: 0.07, blue: 0.14)],
+            startPoint: .top, endPoint: .bottom)
+    }
 
     var body: some View {
-        VStack(spacing: 28) {
+        VStack(spacing: 22) {
+            Text("Stayawake")
+                .font(.system(size: 28, weight: .light, design: .serif))
+                .foregroundStyle(.white.opacity(0.85))
+                .padding(.top, 8)
             Spacer(minLength: 0)
+
             Button(action: keeper.toggle) {
                 ZStack {
-                    Circle().fill(keeper.active ? blue : Color.secondary.opacity(0.14))
-                    Image(systemName: keeper.active ? "cup.and.saucer.fill" : "cup.and.saucer")
-                        .font(.system(size: 76, weight: .light))
-                        .foregroundStyle(keeper.active ? Color.white : Color.secondary)
+                    // warm glow behind the cup while awake
+                    Circle()
+                        .fill(RadialGradient(colors: [Color(red: 0.95, green: 0.72, blue: 0.45).opacity(0.55), .clear],
+                                             center: .center, startRadius: 0, endRadius: 150))
+                        .frame(width: 300, height: 300)
+                        .opacity(keeper.active ? 1 : 0)
+                        .blur(radius: 12)
+                    VStack(spacing: -18) {
+                        SteamView()
+                            .frame(width: 140, height: 110)
+                            .opacity(keeper.active ? 1 : 0)
+                        Image(systemName: keeper.active ? "cup.and.saucer.fill" : "cup.and.saucer")
+                            .font(.system(size: 120, weight: .thin))
+                            .foregroundStyle(keeper.active ? Color.white : Color.white.opacity(0.35))
+                            .shadow(color: .black.opacity(keeper.active ? 0.35 : 0), radius: 18, y: 12)
+                    }
                 }
-                .frame(width: 190, height: 190)
-                .shadow(color: keeper.active ? blue.opacity(0.45) : .clear, radius: 26, y: 10)
+                .frame(height: 300)
+                .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .animation(.easeInOut(duration: 0.25), value: keeper.active)
+            .animation(.easeInOut(duration: 0.6), value: keeper.active)
             .accessibilityLabel(keeper.active ? "Allow sleep" : "Keep awake")
 
             Text(keeper.active ? keeper.status : "Tap the cup to keep the screen on")
-                .font(.title3.weight(.medium))
+                .font(.system(.title3, design: .rounded).weight(.medium))
                 .monospacedDigit()
-                .foregroundStyle(keeper.active ? Color.primary : Color.secondary)
+                .foregroundStyle(keeper.active ? Color.white : Color.white.opacity(0.6))
 
             Picker("Duration", selection: $keeper.duration) {
                 ForEach(Keeper.durations, id: \.label) { d in
@@ -40,12 +65,45 @@ struct ControlView: View {
             #if os(iOS)
             Text("Keep this app open. The screen stays on while you're here.")
                 .font(.footnote)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.white.opacity(0.5))
                 .multilineTextAlignment(.center)
             #endif
             Spacer(minLength: 0)
         }
-        .padding(32)
+        .padding(28)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(background.ignoresSafeArea())
+        .animation(.easeInOut(duration: 0.9), value: keeper.active)
+        .preferredColorScheme(.dark)
+    }
+}
+
+/// Three wisps of steam that sway and rise. Pure Canvas, no images.
+struct SteamView: View {
+    var body: some View {
+        TimelineView(.animation) { tl in
+            let t = tl.date.timeIntervalSinceReferenceDate
+            Canvas { ctx, size in
+                for i in 0..<3 {
+                    let phase = t * 0.9 + Double(i) * 2.1
+                    let x0 = size.width * (0.32 + 0.18 * Double(i))
+                    var path = Path()
+                    let steps = 28
+                    for s in 0...steps {
+                        let f = Double(s) / Double(steps)              // 0 = cup rim, 1 = top
+                        let y = size.height * (1 - f)
+                        let sway = sin(f * 5 - phase) * size.width * 0.07 * (0.25 + f)
+                        let p = CGPoint(x: x0 + sway, y: y)
+                        s == 0 ? path.move(to: p) : path.addLine(to: p)
+                    }
+                    let pulse = 0.65 + 0.35 * sin(phase * 0.6)
+                    let shade = GraphicsContext.Shading.linearGradient(
+                        Gradient(colors: [.white.opacity(0.75 * pulse), .white.opacity(0)]),
+                        startPoint: CGPoint(x: 0, y: size.height), endPoint: CGPoint(x: 0, y: 0))
+                    ctx.stroke(path, with: shade, style: StrokeStyle(lineWidth: 7, lineCap: .round))
+                }
+            }
+            .blur(radius: 2.5)
+        }
     }
 }
