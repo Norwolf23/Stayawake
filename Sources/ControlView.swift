@@ -40,17 +40,18 @@ struct ControlView: View {
                             .shadow(color: .black.opacity(keeper.active ? 0.35 : 0), radius: 18, y: 12)
                     }
                 }
-                .frame(height: 300)
+                .frame(height: 280)
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
             .animation(.easeInOut(duration: 0.6), value: keeper.active)
             .accessibilityLabel(keeper.active ? "Allow sleep" : "Keep awake")
 
-            Text(keeper.active ? keeper.status : "Tap the cup to keep the screen on")
-                .font(.system(.title3, design: .rounded).weight(.medium))
-                .monospacedDigit()
-                .foregroundStyle(keeper.active ? Color.white : Color.white.opacity(0.6))
+            #if os(iOS)
+            if keeper.active { Dashboard() } else { statusLine }
+            #else
+            statusLine
+            #endif
 
             Picker("Duration", selection: $keeper.duration) {
                 ForEach(Keeper.durations, id: \.label) { d in
@@ -80,6 +81,13 @@ struct ControlView: View {
         .background(background.ignoresSafeArea())
         .animation(.easeInOut(duration: 0.9), value: keeper.active)
         .preferredColorScheme(.dark)
+    }
+
+    private var statusLine: some View {
+        Text(keeper.active ? keeper.status : "Tap the cup to keep the screen on")
+            .font(.system(.title3, design: .rounded).weight(.medium))
+            .monospacedDigit()
+            .foregroundStyle(keeper.active ? Color.white : Color.white.opacity(0.6))
     }
 }
 
