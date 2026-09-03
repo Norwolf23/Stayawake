@@ -7,20 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3276C60D640F09CF2FDB12D6 /* Keeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39C40EF35F56D881AFB19A6 /* Keeper.swift */; };
+		370BC0A4E210A32B899DFB34 /* Assets-iOS.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83EA6B7B1D509E3FFBEDCC5E /* Assets-iOS.xcassets */; };
+		39298FAC54DC94EEAF8974EC /* Keeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39C40EF35F56D881AFB19A6 /* Keeper.swift */; };
 		4A019EB4B3D63EFA9831A000 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B731F6E78EA852E72984793D /* Assets.xcassets */; };
-		B89867A1AE80F924B0162B28 /* StayAwake.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509C7BBBA8604F0B817E66D /* StayAwake.swift */; };
+		AA667EA48B250D646CF744A9 /* StayAwakeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92F381C4AE8D73F577C2BE7 /* StayAwakeApp.swift */; };
+		B100643A1F1ABBED3BAC2723 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33319217C69AFCE481944E /* ControlView.swift */; };
+		D780C29DAD2558DAA3CA3B73 /* StayAwakeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92F381C4AE8D73F577C2BE7 /* StayAwakeApp.swift */; };
+		F09FE962ED4DAD6F282B5568 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33319217C69AFCE481944E /* ControlView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		83EA6B7B1D509E3FFBEDCC5E /* Assets-iOS.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-iOS.xcassets"; sourceTree = "<group>"; };
+		A39C40EF35F56D881AFB19A6 /* Keeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keeper.swift; sourceTree = "<group>"; };
 		B731F6E78EA852E72984793D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D509C7BBBA8604F0B817E66D /* StayAwake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StayAwake.swift; sourceTree = "<group>"; };
+		C92F381C4AE8D73F577C2BE7 /* StayAwakeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StayAwakeApp.swift; sourceTree = "<group>"; };
+		CC33319217C69AFCE481944E /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 		ED7BAE681766019D6AC38188 /* StayAwake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StayAwake.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F868F6E1D8918C75A4564BF3 /* StayAwake-iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "StayAwake-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		34F5150A7D81D6A04EE2F03D /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				F868F6E1D8918C75A4564BF3 /* StayAwake-iOS.app */,
 				ED7BAE681766019D6AC38188 /* StayAwake.app */,
 			);
 			name = Products;
@@ -29,15 +40,44 @@
 		829172857699C588563F04F0 = {
 			isa = PBXGroup;
 			children = (
+				83EA6B7B1D509E3FFBEDCC5E /* Assets-iOS.xcassets */,
 				B731F6E78EA852E72984793D /* Assets.xcassets */,
-				D509C7BBBA8604F0B817E66D /* StayAwake.swift */,
+				E1D6C8472A89B1A322118487 /* Sources */,
 				34F5150A7D81D6A04EE2F03D /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		E1D6C8472A89B1A322118487 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				CC33319217C69AFCE481944E /* ControlView.swift */,
+				A39C40EF35F56D881AFB19A6 /* Keeper.swift */,
+				C92F381C4AE8D73F577C2BE7 /* StayAwakeApp.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8F3624531EE1B036C8139C66 /* StayAwake-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 066BFB448BCC70C0F32F49EB /* Build configuration list for PBXNativeTarget "StayAwake-iOS" */;
+			buildPhases = (
+				7DD90ED260B97AA4C78FCE4D /* Sources */,
+				FA79DFBD8B8DA035D0BC3A47 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "StayAwake-iOS";
+			packageProductDependencies = (
+			);
+			productName = "StayAwake-iOS";
+			productReference = F868F6E1D8918C75A4564BF3 /* StayAwake-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 		ABA2B24820645DF05FC92C90 /* StayAwake */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0FE8E48B343DC97EFB8D36E3 /* Build configuration list for PBXNativeTarget "StayAwake" */;
@@ -65,6 +105,10 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					8F3624531EE1B036C8139C66 = {
+						DevelopmentTeam = 6272CRNH9G;
+						ProvisioningStyle = Automatic;
+					};
 					ABA2B24820645DF05FC92C90 = {
 						DevelopmentTeam = 6272CRNH9G;
 						ProvisioningStyle = Automatic;
@@ -86,6 +130,7 @@
 			projectRoot = "";
 			targets = (
 				ABA2B24820645DF05FC92C90 /* StayAwake */,
+				8F3624531EE1B036C8139C66 /* StayAwake-iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -99,6 +144,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FA79DFBD8B8DA035D0BC3A47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				370BC0A4E210A32B899DFB34 /* Assets-iOS.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -106,7 +159,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B89867A1AE80F924B0162B28 /* StayAwake.swift in Sources */,
+				F09FE962ED4DAD6F282B5568 /* ControlView.swift in Sources */,
+				3276C60D640F09CF2FDB12D6 /* Keeper.swift in Sources */,
+				AA667EA48B250D646CF744A9 /* StayAwakeApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DD90ED260B97AA4C78FCE4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B100643A1F1ABBED3BAC2723 /* ControlView.swift in Sources */,
+				39298FAC54DC94EEAF8974EC /* Keeper.swift in Sources */,
+				D780C29DAD2558DAA3CA3B73 /* StayAwakeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +199,30 @@
 				PRODUCT_BUNDLE_IDENTIFIER = studio.nickson.stayawake;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		605385EF99E4AAA25F0348E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6272CRNH9G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Info-iOS.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = studio.nickson.stayawake;
+				PRODUCT_NAME = StayAwake;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -186,7 +275,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -249,10 +337,33 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C948C9F6BF43363375B1099F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6272CRNH9G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Info-iOS.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = studio.nickson.stayawake;
+				PRODUCT_NAME = StayAwake;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -283,6 +394,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		066BFB448BCC70C0F32F49EB /* Build configuration list for PBXNativeTarget "StayAwake-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C948C9F6BF43363375B1099F /* Debug */,
+				605385EF99E4AAA25F0348E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		0FE8E48B343DC97EFB8D36E3 /* Build configuration list for PBXNativeTarget "StayAwake" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
