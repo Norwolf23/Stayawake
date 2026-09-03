@@ -67,6 +67,11 @@ struct ControlView: View {
                 .font(.footnote)
                 .foregroundStyle(.white.opacity(0.5))
                 .multilineTextAlignment(.center)
+            #else
+            Text("Closing the lid still puts the Mac to sleep, unless an external display is connected.")
+                .font(.footnote)
+                .foregroundStyle(.white.opacity(0.5))
+                .multilineTextAlignment(.center)
             #endif
             Spacer(minLength: 0)
         }
