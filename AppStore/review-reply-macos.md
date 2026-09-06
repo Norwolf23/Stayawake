@@ -7,7 +7,7 @@ Paste into "Reply to App Review" on the macOS submission and append to the macOS
 Thank you for the review. Answers to each point:
 
 1. SCREEN RECORDING
-Attached: a recording captured on a physical Mac running the latest macOS. It starts from the Finder/Desktop, launches Stayawake from Applications, shows the control window and the coffee-cup menu bar item, clicks the cup to keep the Mac awake, shows the elapsed/remaining time, opens the menu bar item to show the same controls, then clicks "Allow sleep" to release and quits the app. There is no account registration, login, user-generated content, or paid content in the app.
+Attached: a recording captured on a physical Mac running the latest macOS. It starts from the Finder/Desktop, launches Stayawake from Applications, shows the control window and the coffee-cup menu bar item, clicks the cup to keep the Mac awake, shows the awake status and remaining time, waits past the display-sleep interval to show the display staying on, then clicks the cup again to release. There is no account registration, login, user-generated content, or paid content in the app.
 
 2. PURPOSE AND TARGET AUDIENCE
 Stayawake is a single-purpose utility that stops the Mac from going to sleep or dimming the display for a chosen duration (30 minutes, 1 hour, 2 hours, or until turned off). Problem it solves: during presentations, downloads, long builds, or reading, macOS energy settings put the display or system to sleep and the user has to change System Settings and remember to change them back. Stayawake makes this one click from the menu bar and releases the lock automatically. Target audience: general consumers, all ages (rated 4+).
