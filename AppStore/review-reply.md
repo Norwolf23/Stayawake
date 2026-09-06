@@ -24,4 +24,4 @@ None. The app functions identically in all regions. It contains no region-specif
 6. REGULATED INDUSTRY / THIRD-PARTY MATERIAL
 Not applicable. The app is not in a regulated industry and contains no third-party protected material. All artwork and code are original.
 
-Contact for any follow-up: gustav@ormus.solutions
+Contact for any follow-up: gustavnickson@icloud.com
